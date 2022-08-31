@@ -11,12 +11,15 @@ const Home = () => {
             onUploadProgress: (event) => {
               setProgress(Math.round((event.loaded * 100) / event.total));
             },
-
         };
-
         const response = await axios.post('/api/uploads', formData, config);
-        console.log('response', response.data);
+        console.log('response', response);
     };
+
+    const onClick = async (e)  => {
+      const response = await axios.get(`/api/read?file=${e.target.file[0].name}`);
+      console.log('response - read', response);
+    }
 
     return (
       <div className={'min-h-screen'}>
@@ -25,6 +28,7 @@ const Home = () => {
             label=""
             uploadFileName="theFiles"
             onChange={onChange}
+            onClick={onClick}
           />
           <div className="w-80 inline-flex items-center space-x-2">
             <div className={"w-full h-2 bg-gray-300/30 rounded-full"}>

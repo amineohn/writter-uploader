@@ -5,6 +5,7 @@ export interface IProps {
   allowMultipleFiles?: boolean;
   label: string;
   onChange: (formData: FormData) => void;
+  onClick: (e: any) => void;
   uploadFileName: string;
 }
 
@@ -42,6 +43,7 @@ export const FileInput: FC<IProps> = (props) => {
         multiple={props.allowMultipleFiles}
         name={props.uploadFileName}
         onChange={onChangeHandler}
+        onClick={props.onClick}
         className={'file:bg-blue-500 file:hover:bg-blue-700 file:text-white file:transition file:cursor-pointer file:font-medium file:py-2 file:px-4 file:rounded file:border-none'}
         ref={fileInputRef}
         type="file"
